@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ShoppingCartRequest;
 use App\Models\ShoppingCart;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShoppingCartController extends Controller
 {
@@ -12,7 +13,9 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
-        //
+        $userId = Auth::id();
+        $shoppingCarts = ShoppingCart::with('product')->where('user_id', $userId)->get();
+        return view('shopping_cart.index', compact('shoppingCarts'));
     }
 
     /**
@@ -26,9 +29,11 @@ class ShoppingCartController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ShoppingCartRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        ShoppingCart::create($validatedData);
+        return redirect()->back()->with('success', 'Shopping Cart berhasil ditambahkan');
     }
 
     /**
@@ -42,24 +47,31 @@ class ShoppingCartController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ShoppingCart $shoppingCart)
+    public function edit($id)
     {
-        //
+        $shoppingCart = ShoppingCart::findOrFail($id);
+        return view('shopping_cart.edit', compact('shoppingCart'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ShoppingCart $shoppingCart)
+    public function update(ShoppingCartRequest $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+        $product = ShoppingCart::findOrFail($id);
+        $product->update($validatedData);
+        return redirect()->back()->with('success', 'Product berhasil diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ShoppingCart $shoppingCart)
+    public function destroy($id)
     {
-        //
+        $shoppingCart = ShoppingCart::findOrFail($id);
+        $shoppingCart->delete();
+
+        return redirect()->back()->with('success', 'Shopping Cart berhasil dihapus');
     }
 }
