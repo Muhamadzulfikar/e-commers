@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class ProductCategory extends Model
 {
     use HasFactory;
+
+    protected $table = 'product_categories';
+    protected $primaryKey = 'id';
+    protected $fillable = ['product_type'];
+
+    public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Product::class, 'product_category_id');
+    }
 }
