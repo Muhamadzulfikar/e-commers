@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SalesInvoiceController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('product', ProductController::class);
     Route::get('products/search', [ProductController::class, 'search'])->name('products.search');
     Route::resource('shopping-cart', ShoppingCartController::class);
+    Route::resource('shipping', ShippingController::class);
+    Route::resource('sales-invoice', SalesInvoiceController::class);
 });
 
 require __DIR__.'/auth.php';

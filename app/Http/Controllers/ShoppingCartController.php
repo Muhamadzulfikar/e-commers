@@ -59,8 +59,8 @@ class ShoppingCartController extends Controller
     public function update(ShoppingCartRequest $request, $id)
     {
         $validatedData = $request->validated();
-        $product = ShoppingCart::findOrFail($id);
-        $product->update($validatedData);
+        $shoppingCart = ShoppingCart::findOrFail($id);
+        $shoppingCart->update($validatedData);
         return redirect()->back()->with('success', 'Product berhasil diperbarui');
     }
 
