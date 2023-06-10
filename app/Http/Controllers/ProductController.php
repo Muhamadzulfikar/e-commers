@@ -14,16 +14,17 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::query();
-        $products = collect();
-        $productTypes = ['saus', 'kecap', 'mie', 'kopi', 'gula', 'beras'];
-        foreach ($productTypes as $productType){
-            $products->push($product->whereHas('productCategory', function ($query) use ($productType) {
-                  $query->where('product_type', $productType);
-            })->limit(5)->get());
-        }
+//        $product = Product::query();
+//        $products = collect();
+//        $productTypes = ['saus', 'kecap', 'mie', 'kopi', 'gula', 'beras'];
+//        foreach ($productTypes as $productType){
+//            $products->push($product->whereHas('productCategory', function ($query) use ($productType) {
+//                  $query->where('product_type', $productType);
+//            })->limit(5)->get());
+//        }
+        $products = Product::all();
 
-        return view('product.index', compact('products'));
+        return view('welcome', compact('products'));
     }
 
     /**
@@ -57,9 +58,10 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('Product.show', compact('product'));
     }
 
     /**
