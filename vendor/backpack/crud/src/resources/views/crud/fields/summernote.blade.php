@@ -7,20 +7,20 @@
 @endphp
 
 @include('crud::fields.inc.wrapper_start')
-    <label>{!! $field['label'] !!}</label>
-    @include('crud::fields.inc.translatable_icon')
-    <textarea
-        name="{{ $field['name'] }}"
-        data-init-function="bpFieldInitSummernoteElement"
-        data-options="{{ json_encode($field['options']) }}"
-        bp-field-main-input
+<label>{!! $field['label'] !!}</label>
+@include('crud::fields.inc.translatable_icon')
+<textarea
+    name="{{ $field['name'] }}"
+    data-init-function="bpFieldInitSummernoteElement"
+    data-options="{{ json_encode($field['options']) }}"
+    bp-field-main-input
         @include('crud::fields.inc.attributes', ['default_class' =>  'form-control summernote'])
         >{{ old_empty_or_null($field['name'], '') ??  $field['value'] ?? $field['default'] ?? '' }}</textarea>
 
-    {{-- HINT --}}
-    @if (isset($field['hint']))
-        <p class="help-block">{!! $field['hint'] !!}</p>
-    @endif
+{{-- HINT --}}
+@if (isset($field['hint']))
+    <p class="help-block">{!! $field['hint'] !!}</p>
+@endif
 @include('crud::fields.inc.wrapper_end')
 
 
@@ -28,16 +28,39 @@
 {{-- Extra CSS and JS for this particular field --}}
 {{-- If a field type is shown multiple times on a form, the CSS and JS will only be loaded once --}}
 
-    {{-- FIELD CSS - will be loaded in the after_styles section --}}
+{{-- FIELD CSS - will be loaded in the after_styles section --}}
 @push('crud_fields_styles')
     {{-- include summernote css --}}
     @loadOnce('packages/summernote/dist/summernote-bs4.css')
     @loadOnce('summernoteCss')
     <style type="text/css">
         .note-editor.note-frame .note-status-output, .note-editor.note-airframe .note-status-output {
-                height: auto;
+            height: auto;
         }
     </style>
+    <style type="text/css">
+        /* Custom dark mode styles */
+        .note-editor.note-frame {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .note-editor.note-frame .note-editable {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .note-editor.note-frame .note-toolbar .btn-default,
+        .note-editor.note-frame .note-popover .popover-content {
+            background-color: #555;
+            color: #fff;
+        }
+
+        .note-editor.note-frame .note-resizebar .note-icon-bar {
+            background-color: #555;
+        }
+    </style>
+
     @endLoadOnce
 @endpush
 {{-- FIELD JS - will be loaded in the after_scripts section --}}
@@ -47,19 +70,19 @@
     @loadOnce('bpFieldInitSummernoteElement')
     <script>
         function bpFieldInitSummernoteElement(element) {
-             var summernoteOptions = element.data('options');
+            var summernoteOptions = element.data('options');
 
             let summernotCallbacks = {
-                onChange: function(contents, $editable) {
+                onChange: function (contents, $editable) {
                     element.val(contents).trigger('change');
                 }
             }
 
-            element.on('CrudField:disable', function(e) {
+            element.on('CrudField:disable', function (e) {
                 element.summernote('disable');
             });
 
-            element.on('CrudField:enable', function(e) {
+            element.on('CrudField:enable', function (e) {
                 element.summernote('enable');
             });
 

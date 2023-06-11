@@ -15,7 +15,7 @@ class ShippingRequest extends FormRequest
     {
         return [
             'shipping_type' => 'required|string|min:5|max:255',
-            'partner_name' => 'required|string|min:5|max:255',
+            'partner_name' => 'required|string|min:3|max:255',
             'estimation_day' => 'required|string|min:5|max:255',
             'price' => 'required|int',
         ];

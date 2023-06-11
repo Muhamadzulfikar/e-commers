@@ -42,7 +42,7 @@ class SalesInvoiceController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Sales Invoice berhasil ditambahkan');
+        return redirect()->to(url('admin/product'));
     }
 
     /**

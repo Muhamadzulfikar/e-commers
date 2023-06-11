@@ -6,13 +6,15 @@
                 $buttons = [
                     [
                         "buttonName" => "My Cart",
-                        "url" => "https://github.com/mdbootstrap/bootstrap-material-design",
-                        "color" => "text-bg-primary"
+                        "url" => url('shopping-cart'),
+                        "color" => "text-bg-primary",
+                        'icon' => 'fa-shopping-cart'
                     ],
                     [
                         "buttonName" => request()->user()->name,
                         "url" => url('profile'),
-                        "color" => "border-primary text-primary"
+                        "color" => "border-primary text-primary",
+                        'icon' => 'fa-user-alt'
                     ],
                 ];
             @endphp

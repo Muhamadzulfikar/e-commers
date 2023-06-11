@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ShoppingCartRequest;
 use App\Models\ShoppingCart;
 use Illuminate\Support\Facades\Auth;
+use Prologue\Alerts\Facades\Alert;
 
 class ShoppingCartController extends Controller
 {
@@ -33,7 +34,9 @@ class ShoppingCartController extends Controller
     {
         $validatedData = $request->validated();
         ShoppingCart::create($validatedData);
-        return redirect()->back()->with('success', 'Shopping Cart berhasil ditambahkan');
+
+        Alert::success('Product berhasil ditambahkan kedalam keranjang')->flash();
+        return redirect()->to(url("product/{$request->product_id}"));
     }
 
     /**

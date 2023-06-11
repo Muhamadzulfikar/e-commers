@@ -1,7 +1,7 @@
 @extends(backpack_view('layouts.top_left'))
 
 @php
-	// Merge widgets that were fluently declared with widgets declared without the fluent syntax: 
+	// Merge widgets that were fluently declared with widgets declared without the fluent syntax:
 	// - $data['widgets']['before_content']
 	// - $data['widgets']['after_content']
 	if (isset($widgets)) {
@@ -31,3 +31,18 @@
 @section('after_content_widgets')
 	@include(backpack_view('inc.widgets'), [ 'widgets' => app('widgets')->where('section', 'after_content')->toArray() ])
 @endsection
+
+@push('after_scripts')
+<!-- Custom Scripts for list -->
+<script>
+    jQuery(function ($) {
+        $('#crudTable_filter input').unbind().keyup(function (e) {
+            if (e.keyCode == 13) {
+                $('#crudTable').dataTable().fnFilter(this.value);
+            } else {
+                return false;
+            }
+        });
+    });
+</script>
+@endpush

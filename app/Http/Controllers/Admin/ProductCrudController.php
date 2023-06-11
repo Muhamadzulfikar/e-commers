@@ -164,6 +164,7 @@ class ProductCrudController extends CrudController
     public function update(ProductRequest $request, $id)
     {
         // Update image if provide
+        $validatedData = $request->validated();
         $product = Product::findOrFail($id);
         if ($request->hasFile('image_product')) {
             //delete old image
