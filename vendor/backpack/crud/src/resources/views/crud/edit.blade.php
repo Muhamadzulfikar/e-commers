@@ -26,7 +26,7 @@
 
 @section('content')
 <div class="row">
-	<div class="{{ $crud->getEditContentClass() }}">
+	<div class="col-md-12">
 		{{-- Default box --}}
 
 		@include('crud::inc.grouped_errors')

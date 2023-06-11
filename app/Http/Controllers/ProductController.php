@@ -28,34 +28,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(ProductRequest $request)
-    {
-        $validatedData = $request->validated();
-
-        // Upload image
-        if ($request->hasFile('image_product')) {
-            $image = $request->file('image_product');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $validatedData['image_product'] = $imageName;
-        }
-
-        Product::create($validatedData);
-
-        return redirect()->back()->with('success', 'Product berhasil ditambahkan');
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show($id)

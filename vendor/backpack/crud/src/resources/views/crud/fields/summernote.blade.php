@@ -49,7 +49,7 @@
         function bpFieldInitSummernoteElement(element) {
              var summernoteOptions = element.data('options');
 
-            let summernotCallbacks = { 
+            let summernotCallbacks = {
                 onChange: function(contents, $editable) {
                     element.val(contents).trigger('change');
                 }
@@ -62,10 +62,10 @@
             element.on('CrudField:enable', function(e) {
                 element.summernote('enable');
             });
-            
+
             summernoteOptions['callbacks'] = summernotCallbacks;
-            
-            element.summernote(summernoteOptions); 
+
+            element.summernote(summernoteOptions);
         }
     </script>
     @endLoadOnce

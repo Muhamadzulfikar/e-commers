@@ -24,7 +24,7 @@ return [
     // ----
 
     // Project name. Shown in the window title.
-    'project_name' => 'Backpack Admin Panel',
+    'project_name' => 'Ecommers Admin Panel',
 
     // When clicking on the admin panel's top-left logo/name,
     // where should the user be redirected?
@@ -41,7 +41,7 @@ return [
     // ---------
 
     // Show "Getting Started with Backpack" info block?
-    'show_getting_started' => env('APP_ENV') == 'local',
+    'show_getting_started' => false,
 
     // ------
     // STYLES
@@ -85,13 +85,13 @@ return [
     // ------
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
-    'project_logo'   => '<b>Back</b>pack',
+    'project_logo'   => '<b>Ecommers</b>',
 
     // Show / hide breadcrumbs on admin panel pages.
     'breadcrumbs' => true,
 
     // Horizontal navbar classes. Helps make the admin panel look similar to your project's design.
-    'header_class' => 'app-header bg-light border-0 navbar',
+    'header_class' => 'app-header bg-dark text-white border-0 navbar',
     // For background colors use: bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan, bg-white
     // For links to be visible on different background colors use: "navbar-dark", "navbar-light", "navbar-color"
 
@@ -100,11 +100,11 @@ return [
     // ----
 
     // Body element classes.
-    'body_class' => 'app aside-menu-fixed sidebar-lg-show',
+    'body_class' => 'app bg-dark aside-menu-fixed sidebar-lg-show',
     // Try sidebar-hidden, sidebar-fixed, sidebar-compact, sidebar-lg-show
 
     // Sidebar element classes.
-    'sidebar_class' => 'sidebar sidebar-pills bg-light',
+    'sidebar_class' => 'sidebar sidebar-pills bg-dark',
     // Remove "sidebar-transparent" for standard sidebar look
     // Try "sidebar-light" or "sidebar-dark" for dark/light links
     // You can also add a background class like bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan
